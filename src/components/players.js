@@ -1,7 +1,9 @@
+import PlayerUi from "./playerui";
 const Players =() => {
     return (
         <>
-            <h1>Players Details</h1>
+          <PlayerUi name="Ms Dhoni" role="Right hand batshman"
+          matchsPlayed="13" runsScored="98"/>
         </>
     )
 }
