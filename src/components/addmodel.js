@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Forminput from './form';
 import Form from 'react-bootstrap/Form';
 function Model(props) {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(props.show);
     const [name, setName] = useState(props.name);
     const [role, setRole] = useState();
     const [team, setTeam] = useState();
@@ -55,15 +55,16 @@ function Model(props) {
         }
         fetch('http://localhost:3005/addplayers',reqoptions)
         .then(res=>res.json())
-        .then(data=>console.log(data.status()))
+        .then(data=>{props.togglebutton();})
     }
 
   return (
     <>
-        <button onClick={handleShow} className="block m-20 mx-auto px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add Player</button>
+        <button onClick={props.togglebutton} 
+        className="block m-20 mx-auto px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add Player</button>
 
       <Modal
-        show={show}
+        show={props.show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
@@ -159,6 +160,13 @@ function Model(props) {
                 } />
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="avg">
+                <Form.Control type="number" 
+                    placeholder="Enter Average"
+                    onChange={(e)=>setAvg(e.target.value)}
+                    />
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="st">
                 <Form.Control 
                     type="number" 
@@ -209,13 +217,6 @@ function Model(props) {
                      />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="avg">
-                <Form.Control type="number" 
-                    placeholder="Enter Average"
-                    onChange={(e)=>setAvg(e.target.value)}
-                    />
-            </Form.Group>
-
             <Form.Group className="mb-3" controlId="eco">
                 <Form.Control type="number" 
                 placeholder="Enter Economy"
@@ -239,10 +240,10 @@ function Model(props) {
         </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={props.togglebutton}>
             Close
           </Button>
-          <button variant="primary" onClick={handleClose} form='playerdetails'>Add Player</button>
+          <button variant="primary"  form='playerdetails'>Add Player</button>
         </Modal.Footer>
       </Modal>
     </>

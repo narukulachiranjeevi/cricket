@@ -1,9 +1,12 @@
 import Model from './addmodel.js'
-
-const Addplayer = (name,team,role,img,mat,runs,Hs,Avg,st,fours,sixes,overs,wickets,bbl,eco,fourwickets,fivewickets) => {
-    
+import {useState} from 'react';
+const Addplayer = () => {
+    const togglebutton=()=>{
+        setShow(!show);
+    }
+    const [show, setShow] = useState(false);
     return (
-        <Model/>
+        <Model show={show} togglebutton={togglebutton}/>
     )
 }
 export default Addplayer;

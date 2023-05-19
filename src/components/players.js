@@ -11,7 +11,7 @@ const Players =() => {
   },[])
     return (
         <>
-          <div className="flex flex-wrap justify-between">
+          <div className="flex flex-wrap justify-between gap-8">
             {players ? players.map((player)=>{
               return (
                 <PlayerUi className="" name={player.name} role={player.role}
