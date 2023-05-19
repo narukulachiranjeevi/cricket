@@ -3,11 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Forminput from './form';
 import Form from 'react-bootstrap/Form';
-
 function Model(props) {
-    
     const [show, setShow] = useState(false);
-    const [name, setName] = useState();
+    const [name, setName] = useState(props.name);
     const [role, setRole] = useState();
     const [team, setTeam] = useState();
     const [mat, setMat] = useState();
@@ -28,6 +26,38 @@ function Model(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+    const addPlayer = ()=> {
+        const player = {
+            name:name,
+            role:role,
+            team:team,
+            mat:mat,
+            runs:runs,
+            Hs:Hs,
+            Avg:Avg,
+            st:st,
+            fours:fours,
+            sixes:sixes,
+            overs:overs,
+            wickets:wickets,
+            bbl:bbl,
+            eco:eco,
+            fourwickets:fourwickets,
+            fivewickets:fivewickets,
+            img:img
+        }
+        console.log(player);
+        const reqoptions = {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(player)
+        }
+        fetch('http://localhost:3005/addplayers',reqoptions)
+        .then(res=>res.json())
+        .then(data=>console.log(data.status()))
+    }
+
   return (
     <>
         <button onClick={handleShow} className="block m-20 mx-auto px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add Player</button>
@@ -47,6 +77,7 @@ function Model(props) {
             onSubmit={
                 (e)=>{
                     e.preventDefault();
+                    addPlayer();
                     console.log('inside add player'+' '+team+' '+role+' '+img);
                 }
             }>
@@ -55,6 +86,15 @@ function Model(props) {
                     onChange={(e)=>{
                         setName(e.target.value);
                         console.log(name);
+                    }
+                }
+                 />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Control type="text" placeholder="Enter Img Url" 
+                    onChange={(e)=>{
+                        setImg(e.target.value);
                     }
                 }
                  />

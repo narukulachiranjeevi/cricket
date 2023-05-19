@@ -1,6 +1,7 @@
 import Model from './addmodel.js'
 
-const Addplayer = () => {
+const Addplayer = (name,team,role,img,mat,runs,Hs,Avg,st,fours,sixes,overs,wickets,bbl,eco,fourwickets,fivewickets) => {
+    
     return (
         <Model/>
     )

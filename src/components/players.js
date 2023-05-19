@@ -11,10 +11,10 @@ const Players =() => {
   },[])
     return (
         <>
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-between">
             {players ? players.map((player)=>{
               return (
-                <PlayerUi name={player.name} role={player.role}
+                <PlayerUi className="" name={player.name} role={player.role}
                 img={player.img} matchsPlayed={player.mat} runsScored={player.runs} team={player.team}/>
               );
             }):null}
